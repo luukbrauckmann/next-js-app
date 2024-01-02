@@ -15,7 +15,7 @@ export async function POST(request) {
         password,
     })
 
-    if (result.error) throw new Error(result.error.message)
+    // if (result.error) throw new Error(result.error.message)
 
     return NextResponse.redirect(requestUrl.origin)
 }
