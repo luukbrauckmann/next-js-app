@@ -10,12 +10,17 @@ export async function POST(request) {
     const cookieStore = cookies()
     const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
 
-    const result = await supabase.auth.signInWithPassword({
+    let redirectUrl = requestUrl.origin
+
+    const response = await supabase.auth.signInWithPassword({
         email,
         password,
     })
 
-    // if (result.error) throw new Error(result.error.message)
+    if (response.error) {
+        const { error } = response
+        redirectUrl = `${redirectUrl}/auth/sign-in?error=${error.message}`
+    }
 
-    return NextResponse.redirect(requestUrl.origin)
+    return NextResponse.redirect(redirectUrl)
 }

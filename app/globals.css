@@ -40,6 +40,17 @@ main {
     gap: var(--spacing);
 }
 
+.form__error {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+    border: 1px solid red;
+    background-color: #fdd;
+    padding: var(--spacing);
+    border-radius: 4px;
+    color: red;
+}
+
 input,
 button[type="submit"] {
     padding: var(--spacing);
